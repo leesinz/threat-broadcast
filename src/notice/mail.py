@@ -41,7 +41,7 @@ def to_mail(gtk, cves, smtp, sender, password):
     email['From'] = sender
     #email['To'] = ', '.join(receivers)                  # 此处收件人列表必须为逗号分隔的 str
     email['To'] = 'hjzhu@hillstonenet.com'
-    #log.info('[邮件] 收件人清单： %s' % receivers)
+    log.info('[邮件] 收件人清单： %s' % email['To'])
     subject = '威胁情报播报'
     email['Subject'] = Header(subject, 'utf-8')
 
