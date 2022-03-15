@@ -91,7 +91,8 @@ def main(top, auto_commit, gtk, mail_smtp, mail_user, mail_pass):
         print (mail_smtp)
         print (mail_user)
         print (mail_pass)
-        mail.to_mail(gtk, all_cves, mail_smtp, mail_user, mail_pass)
+        #mail.to_mail(gtk, all_cves, mail_smtp, mail_user, mail_pass)
+        mail.to_mail(gtk,all_cves,'10.88.5.102','hjzhu@hillstonenet.com','qwerASDF456.')
         #qq.to_group(all_cves, qq_user, qq_pass)
         #wechat.to_wechat(all_cves)
         if auto_commit:
