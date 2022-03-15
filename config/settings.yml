@@ -14,9 +14,9 @@ crawler:
   top: 30                                 # 播报时每个来源最多取最新的前 top 个 CVE
 
 notify:
-  mail_smtp: 'smtp.qq.com'
-  mail_user: 'threat_broadcast@qq.com'     # 用于发送播报信息的邮箱账号
-  mail_pass: "eqiiccfetmdnbiaa"
+  mail_smtp: '10.88.5.102'
+  mail_user: 'hjzhu@hillstonenet.com'     # 用于发送播报信息的邮箱账号
+  mail_pass: "qwerASDF456."
     #qq_user: ''                    # 用于向 QQ 群发送播报信息的 QQ 账号
     #qq_pass: ""
 

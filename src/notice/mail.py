@@ -47,6 +47,8 @@ def to_mail(gtk, cves, smtp, sender, password):
 
     try:
         smtpObj = smtplib.SMTP(smtp)
+        print (sender)
+        print (password)
         smtpObj.login(sender, password)
         smtpObj.sendmail(sender, receivers, email.as_string())  # 此处收件人列表必须为 list
         log.info('[邮件] 推送威胁情报成功')
