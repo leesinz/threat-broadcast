@@ -66,7 +66,8 @@ def init():
 
 
 def main(top, auto_commit, gtk, mail_smtp, mail_user, mail_pass):
-    all_cves = {}
+    all_cves = {'CVE-2222-2222':'TEST'}
+    '''
     srcs = [ 
         Cert360(), 
         Nsfocus(), 
@@ -84,13 +85,12 @@ def main(top, auto_commit, gtk, mail_smtp, mail_user, mail_pass):
         if cves:
             to_log(cves)
             all_cves[src] = cves
-
+            '''
     if all_cves:
-        page.to_page(top)
+        #page.to_page(top)
         mail.to_mail(gtk, all_cves, mail_smtp, mail_user, mail_pass)
         #qq.to_group(all_cves, qq_user, qq_pass)
         #wechat.to_wechat(all_cves)
-
         if auto_commit:
             git.auto_commit()
 

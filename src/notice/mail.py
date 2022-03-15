@@ -23,6 +23,7 @@ MAIL_RECV_CACHE = '%s/cache/mail_recvs.dat' % config.PRJ_DIR
 
 
 def to_mail(gtk, cves, smtp, sender, password):
+    '''
     content = format_content(cves)
     receivers = load_local_receivers()
     if gtk:
@@ -31,25 +32,28 @@ def to_mail(gtk, cves, smtp, sender, password):
         recvs.update(receivers)
         to_cache(','.join(recvs), MAIL_RECV_CACHE)
         to_cache(content, MAIL_CONTENT_CACHE)
-
+    
     else:
-        log.info('[邮件] 正在推送威胁情报...')
-        email = MIMEText(content, 'html', config.CHARSET)     # 以 html 格式发送邮件内容
-        email['From'] = sender
-        email['To'] = ', '.join(receivers)                  # 此处收件人列表必须为逗号分隔的 str
-        log.info('[邮件] 收件人清单： %s' % receivers)
-        subject = '威胁情报播报'
-        email['Subject'] = Header(subject, 'utf-8')
+    '''
+    log.info('[邮件] 正在推送威胁情报...')
+    content = 'test'
+    email = MIMEText(content, 'html', config.CHARSET)     # 以 html 格式发送邮件内容
+    email['From'] = sender
+    #email['To'] = ', '.join(receivers)                  # 此处收件人列表必须为逗号分隔的 str
+    email['To'] = 'hjzhu@hillstonenet.com'
+    #log.info('[邮件] 收件人清单： %s' % receivers)
+    subject = '威胁情报播报'
+    email['Subject'] = Header(subject, 'utf-8')
 
-        try:
-            smtpObj = smtplib.SMTP(smtp)
-            smtpObj.login(sender, password)
-            smtpObj.sendmail(sender, receivers, email.as_string())  # 此处收件人列表必须为 list
-            log.info('[邮件] 推送威胁情报成功')
-        except:
-            log.error('[邮件] 推送威胁情报失败')
+    try:
+        smtpObj = smtplib.SMTP(smtp)
+        smtpObj.login(sender, password)
+        smtpObj.sendmail(sender, receivers, email.as_string())  # 此处收件人列表必须为 list
+        log.info('[邮件] 推送威胁情报成功')
+    except:
+        log.error('[邮件] 推送威胁情报失败')
 
-
+"""
 def format_content(cves):
     src_tpl = '    <li><font color="red">%(cnt)d</font>条由 [<a href="%(url)s">%(src)s</a>] 提供</li>'
     mail_tpl =  '''
@@ -121,3 +125,4 @@ def load_issue_receivers(gtk):
 def to_cache(date, filepath):
     with open(filepath, 'w+', encoding=config.CHARSET) as file:
         file.write(date)
+        """
