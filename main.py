@@ -22,8 +22,8 @@ from src.crawler.tenable import Tenable
 
 import src.notice.page as page
 import src.notice.mail as mail
-import src.notice.qq as qq
-import src.notice.wechat as wechat
+#import src.notice.qq as qq
+#import src.notice.wechat as wechat
 import src.utils._git as git
 
 
@@ -55,9 +55,9 @@ def get_args(args) :
     mail_smtp = args.mail_smtp or settings.notify['mail_smtp']
     mail_user = args.mail_user or settings.notify['mail_user']
     mail_pass = args.mail_pass or settings.notify['mail_pass']
-    qq_user = args.qq_user or settings.notify['qq_user']
-    qq_pass = args.qq_pass or settings.notify['qq_pass']
-    return [ top, auto_commit, gtk, mail_smtp, mail_user, mail_pass, qq_user, qq_pass ]
+    #qq_user = args.qq_user or settings.notify['qq_user']
+    #qq_pass = args.qq_pass or settings.notify['qq_pass']
+    return [ top, auto_commit, gtk, mail_smtp, mail_user, mail_pass ]
 
 
 def init():
@@ -65,7 +65,7 @@ def init():
     sdbc.exec_script(settings.database['sqlpath'])
 
 
-def main(top, auto_commit, gtk, mail_smtp, mail_user, mail_pass, qq_user, qq_pass):
+def main(top, auto_commit, gtk, mail_smtp, mail_user, mail_pass):
     all_cves = {}
     srcs = [ 
         Cert360(), 
@@ -88,8 +88,8 @@ def main(top, auto_commit, gtk, mail_smtp, mail_user, mail_pass, qq_user, qq_pas
     if all_cves:
         page.to_page(top)
         mail.to_mail(gtk, all_cves, mail_smtp, mail_user, mail_pass)
-        qq.to_group(all_cves, qq_user, qq_pass)
-        wechat.to_wechat(all_cves)
+        #qq.to_group(all_cves, qq_user, qq_pass)
+        #wechat.to_wechat(all_cves)
 
         if auto_commit:
             git.auto_commit()
@@ -104,8 +104,3 @@ def to_log(cves):
 if __name__ == '__main__':
     init()
     main(*get_args(args()))
-
-
-
-
-
