@@ -47,6 +47,7 @@ def to_mail(gtk, cves, smtp, sender, password):
 
     try:
         smtpObj = smtplib.SMTP(smtp)
+        print (smtp)
         print (sender)
         print (password)
         smtpObj.login(sender, password)
